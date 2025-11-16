@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pillars of Thought</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">Pillars of Thought</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#database">Database</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button id="open-account" class="ghost-btn">Account</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="home" class="hero">
+    <div class="hero-copy">
+      <h1>Welcome to Pillars of Thought</h1>
+      <p>An interactive library for scholars exploring the intersections of philosophy, theology, history, and politics.</p>
+      <div class="cta-group">
+        <a class="primary-btn" href="#database">Explore Papers</a>
+        <a class="secondary-btn" href="#blog">Visit the Salon</a>
+      </div>
+    </div>
+    <div class="hero-books"></div>
+  </main>
+
+  <section id="search" class="search-section">
+    <h2>Search the Collection</h2>
+    <div class="search-controls">
+      <input type="search" id="search-input" placeholder="Search by keyword, category, or author" />
+      <select id="category-filter">
+        <option value="all">All Categories</option>
+      </select>
+      <input type="text" id="tag-filter" placeholder="Filter by tag (e.g., Ethics)" />
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <h2>About the Think Tank</h2>
+    <p>We convene researchers, pastors, archivists, and civic artists who believe that rigorous scholarship can nourish public imagination. Pillars of Thought publishes peer-reviewed papers, maintains an open database, and hosts salon-style conversations.</p>
+  </section>
+
+  <section id="featured" class="featured">
+    <h2>Featured Papers</h2>
+    <div class="featured-grid" id="featured-papers"></div>
+  </section>
+
+  <section id="database" class="database">
+    <h2>Academic Database</h2>
+    <div class="bookshelf" id="bookshelf"></div>
+  </section>
+
+  <section id="blog" class="blog">
+    <div class="section-heading">
+      <h2>Salon &amp; Dispatches</h2>
+      <p>Informal essays, editorials, and reflections from resident fellows.</p>
+    </div>
+    <div class="blog-grid" id="blog-grid"></div>
+  </section>
+
+  <section id="resources" class="resources">
+    <h2>Research Resources</h2>
+    <ul>
+      <li>Archival Toolkit</li>
+      <li>Scholarly Networks</li>
+      <li>Pedagogy Notes</li>
+      <li>Oral History Guides</li>
+    </ul>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Connect with Us</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Name" required />
+      <input type="email" placeholder="Email" required />
+      <textarea placeholder="Message" rows="4" required></textarea>
+      <button type="submit" class="primary-btn">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Pillars of Thought. All Rights Reserved.</p>
+  </footer>
+
+  <div id="paper-modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-modal" aria-label="Close">&times;</button>
+      <div class="modal-body">
+        <div class="paper-info">
+          <h3 id="paper-title"></h3>
+          <p class="paper-meta" id="paper-meta"></p>
+          <div class="paper-tags" id="paper-tags"></div>
+        </div>
+        <div class="page-turner" id="paper-content"></div>
+        <div class="citations" id="paper-citations"></div>
+        <div class="paper-actions">
+          <a id="paper-download" class="primary-btn" target="_blank" rel="noopener">Download PDF</a>
+          <button id="save-paper" class="secondary-btn">Save to Library</button>
+          <div class="list-add">
+            <select id="list-selector">
+              <option value="">Select Research List</option>
+            </select>
+            <button id="add-to-list" class="ghost-btn">Add to List</button>
+          </div>
+        </div>
+        <div class="related" id="related-papers"></div>
+        <div class="comments">
+          <h4>Discussion</h4>
+          <div id="comment-list"></div>
+          <form id="comment-form">
+            <textarea id="comment-input" placeholder="Join the conversation" required></textarea>
+            <button type="submit" class="ghost-btn">Post Comment</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="account-panel" class="modal" aria-hidden="true">
+    <div class="modal-content narrow">
+      <button class="close-modal" aria-label="Close">&times;</button>
+      <div class="modal-body account-body">
+        <h3>Your Scholarly Desk</h3>
+        <div class="account-columns">
+          <form id="registration-form" class="account-card">
+            <h4>Register</h4>
+            <input type="text" id="reg-name" placeholder="Full Name" required />
+            <input type="email" id="reg-email" placeholder="Email" required />
+            <input type="password" id="reg-password" placeholder="Password" required />
+            <button type="submit" class="primary-btn">Create Account</button>
+          </form>
+          <div class="account-card">
+            <h4>Saved Library</h4>
+            <ul id="saved-papers"></ul>
+          </div>
+          <div class="account-card">
+            <h4>Research Lists</h4>
+            <form id="list-form" class="list-form">
+              <input type="text" id="list-name" placeholder="New list name" required />
+              <button type="submit" class="ghost-btn">Create List</button>
+            </form>
+            <div id="list-collection"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/script.js" type="module"></script>
+</body>
+</html>
