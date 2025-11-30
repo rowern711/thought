@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<section class="pillar">
+  <h1 class="pillar-title">{{ page.title }}</h1>
+  <p class="pillar-intro">{{ page.description }}</p>
+  <div class="post-grid">
+    {% assign pillar_posts = site.posts | where_exp: 'p', 'p.pillar == page.pillar or p.category == page.pillar' %}
+    {% for post in pillar_posts %}
+      <article class="post-card">
+        <p class="post-meta">{{ post.date | date: "%B %d, %Y" }}</p>
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 140 }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>
